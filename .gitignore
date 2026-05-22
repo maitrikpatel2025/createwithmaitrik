@@ -1,0 +1,8 @@
+.next/
+node_modules/
+payload.db
+payload.db-journal
+.env.local
+.env*.local
+*.tsbuildinfo
+/public/uploads/
