@@ -8,4 +8,4 @@ const nextConfig: NextConfig = {
   serverExternalPackages: ['@monaco-editor/react', 'monaco-editor'],
 }
 
-export default withPayload(nextConfig, { devBundleServerPackages: false })
+export default withPayload(nextConfig)
