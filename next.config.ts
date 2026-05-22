@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   experimental: {
     reactCompiler: false,
   },
+  serverExternalPackages: ['@monaco-editor/react', 'monaco-editor'],
 }
 
 export default withPayload(nextConfig, { devBundleServerPackages: false })
