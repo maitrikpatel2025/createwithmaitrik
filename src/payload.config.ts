@@ -29,6 +29,14 @@ export default buildConfig({
     meta: {
       titleSuffix: '— Maitrik Patel CMS',
     },
+    components: {
+      graphics: {
+        Logo: './components/admin/Logo',
+        Icon: './components/admin/Icon',
+      },
+      Nav: './components/admin/Nav',
+      beforeDashboard: ['./components/admin/DashboardBanner'],
+    },
   },
   collections: [Playbooks, Tools, Services, NewsletterIssues, Inquiries, Media, Users],
   globals: [SiteSettings, LeadMagnet, PaidOffer, MediaKitStats],

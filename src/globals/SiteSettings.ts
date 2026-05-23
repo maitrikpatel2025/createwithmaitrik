@@ -10,6 +10,7 @@ export const SiteSettings: GlobalConfig = {
       name: 'name',
       type: 'text',
       defaultValue: 'Maitrik Patel',
+      label: 'Site name',
     },
     {
       name: 'tagline',
