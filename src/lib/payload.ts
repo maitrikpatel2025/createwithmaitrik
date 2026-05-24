@@ -25,6 +25,12 @@ export type SiteSettingsData = {
   tiktok?: string
   x?: string
   linkedin?: string
+  showIgFollowers?: boolean
+  igFollowers?: number
+  showIgViews?: boolean
+  igViews?: number
+  showYtSubscribers?: boolean
+  ytSubscribers?: number
 }
 
 export type LeadMagnetData = {
@@ -94,4 +100,16 @@ export type MediaKitStatData = {
   value: string
   label: string
   id?: string
+}
+
+export type SpecAdData = {
+  id: string | number
+  brand: string
+  tag?: string
+  description?: string
+  thumbnail?: { url?: string; alt?: string } | null
+  video?: { url?: string; mimeType?: string } | null
+  externalVideoUrl?: string
+  order?: number
+  enabled?: boolean
 }

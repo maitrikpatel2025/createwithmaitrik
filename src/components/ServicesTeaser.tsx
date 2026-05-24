@@ -1,20 +1,23 @@
 import { Button, ArrowRight, Eyebrow } from './ui/Button'
+import { Reveal, RevealGroup } from './AnimateIn'
 
 export function ServicesTeaser() {
   return (
     <section className="cwm-teaser">
       <div className="cwm-container cwm-teaser__grid">
-        <div>
-          <Eyebrow>Work with me</Eyebrow>
-          <h2 className="cwm-teaser__title">Hire the operator,<br />not the agency.</h2>
-          <p className="cwm-teaser__desc">
-            AI ad production, agent builds, and 1:1 coaching for creators. Direct line, no account-manager layer.
-          </p>
-          <Button href="/services" variant="primary" size="lg">
-            Get my help <ArrowRight />
-          </Button>
-        </div>
-        <div className="cwm-feature-tiles">
+        <Reveal animation="fade-up">
+          <div>
+            <Eyebrow>Work with me</Eyebrow>
+            <h2 className="cwm-teaser__title">Hire the operator,<br />not the agency.</h2>
+            <p className="cwm-teaser__desc">
+              AI ad production, agent builds, and 1:1 coaching for creators. Direct line, no account-manager layer.
+            </p>
+            <Button href="/services" variant="primary" size="lg">
+              Get my help <ArrowRight />
+            </Button>
+          </div>
+        </Reveal>
+        <RevealGroup stagger={100} animation="fade-up" className="cwm-feature-tiles">
           {[
             { num: '01', t: 'AI Ad Production', d: 'Cinematic ad creative without an agency.' },
             { num: '02', t: 'AI Agent Builds', d: 'Multi-agent systems that ship to production.' },
@@ -27,7 +30,7 @@ export function ServicesTeaser() {
               <p className="cwm-feature-tile__desc">{f.d}</p>
             </div>
           ))}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   )

@@ -7,14 +7,21 @@
     "build": "next build",
     "start": "next start",
     "seed": "npx tsx src/seed.ts",
-    "generate:types": "payload generate:types"
+    "generate:types": "payload generate:types",
+    "test": "npx playwright test --project=desktop",
+    "test:frontend": "npx playwright test tests/frontend.spec.ts --project=desktop",
+    "test:cms": "npx playwright test tests/cms-api.spec.ts --project=desktop",
+    "test:agent": "npx playwright test tests/agent-features.spec.ts --project=desktop",
+    "test:integration": "npx playwright test tests/integration.spec.ts --project=desktop"
   },
   "dependencies": {
     "@payloadcms/db-sqlite": "3.33.0",
     "@payloadcms/next": "3.33.0",
+    "@payloadcms/storage-s3": "^3.33.0",
     "@payloadcms/ui": "3.33.0",
     "graphql": "^16.10.0",
     "next": "15.3.9",
+    "nodemailer": "^8.0.8",
     "payload": "3.33.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -23,6 +30,7 @@
   "devDependencies": {
     "@playwright/test": "^1.60.0",
     "@types/node": "^22.0.0",
+    "@types/nodemailer": "^8.0.0",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "autoprefixer": "^10.4.20",

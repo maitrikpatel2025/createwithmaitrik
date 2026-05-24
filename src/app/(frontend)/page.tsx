@@ -1,4 +1,5 @@
 import { Hero } from '@/components/Hero'
+import { StatsBar } from '@/components/StatsBar'
 import { LeadMagnetBand } from '@/components/LeadMagnetBand'
 import { FeaturedPlaybooks } from '@/components/FeaturedPlaybooks'
 import { NewsletterBand } from '@/components/NewsletterBand'
@@ -67,11 +68,12 @@ export default async function HomePage() {
   return (
     <>
       <Hero settings={settings} />
-      <LeadMagnetBand lm={lm} />
+      <StatsBar settings={settings} />
       <FeaturedPlaybooks playbooks={playbooks} />
-      <NewsletterBand />
+      <LeadMagnetBand lm={lm} />
       <ToolStack tools={tools.length > 0 ? tools : DEFAULT_TOOLS} />
       <ServicesTeaser />
+      <NewsletterBand />
       <PartnershipsTeaser settings={settings} />
     </>
   )

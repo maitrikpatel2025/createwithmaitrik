@@ -61,5 +61,20 @@ export const SiteSettings: GlobalConfig = {
         { name: 'linkedin', type: 'text', defaultValue: 'in/maitrikpatel' },
       ],
     },
+    {
+      label: 'Social proof numbers',
+      type: 'collapsible',
+      admin: {
+        description: 'Toggle each stat on/off and set the value. They show on the homepage stats bar.',
+      },
+      fields: [
+        { name: 'showIgFollowers', type: 'checkbox', label: 'Show Instagram followers', defaultValue: false },
+        { name: 'igFollowers', type: 'number', label: 'Instagram followers', defaultValue: 0, admin: { condition: (_, siblingData) => siblingData?.showIgFollowers } },
+        { name: 'showIgViews', type: 'checkbox', label: 'Show Instagram views', defaultValue: false },
+        { name: 'igViews', type: 'number', label: 'Instagram views (28 days)', defaultValue: 0, admin: { condition: (_, siblingData) => siblingData?.showIgViews } },
+        { name: 'showYtSubscribers', type: 'checkbox', label: 'Show YouTube subscribers', defaultValue: false },
+        { name: 'ytSubscribers', type: 'number', label: 'YouTube subscribers', defaultValue: 0, admin: { condition: (_, siblingData) => siblingData?.showYtSubscribers } },
+      ],
+    },
   ],
 }

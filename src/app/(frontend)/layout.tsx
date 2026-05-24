@@ -3,6 +3,7 @@ import { Nav } from '@/components/Nav'
 import { Footer } from '@/components/Footer'
 import { getPayloadClient } from '@/lib/payload'
 import type { SiteSettingsData } from '@/lib/payload'
+import './animations.css'
 
 export const metadata: Metadata = {
   title: {

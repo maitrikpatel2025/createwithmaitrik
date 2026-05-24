@@ -1,4 +1,6 @@
 import type { CollectionConfig } from 'payload'
+import { createAfterChangeHook } from '../lib/collectionHooks'
+import { authOrApiKey } from '../lib/accessControl'
 
 export const Inquiries: CollectionConfig = {
   slug: 'inquiries',
@@ -9,7 +11,7 @@ export const Inquiries: CollectionConfig = {
   },
   access: {
     create: () => true,
-    read: ({ req }) => Boolean(req.user),
+    read: authOrApiKey('inquiries', 'read'),
     update: ({ req }) => Boolean(req.user),
     delete: ({ req }) => Boolean(req.user),
   },
@@ -57,6 +59,9 @@ export const Inquiries: CollectionConfig = {
         data.submittedAt = new Date().toISOString()
         return data
       },
+    ],
+    afterChange: [
+      createAfterChangeHook({ created: 'inquiry.created' }),
     ],
   },
 }

@@ -1,4 +1,5 @@
 import type { SiteSettingsData } from '@/lib/payload'
+import { socialUrl } from '@/lib/social'
 
 function IcoIG() { return (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>) }
 function IcoYT() { return (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="m10 9 6 3-6 3z" fill="currentColor" stroke="none"/></svg>) }
@@ -8,16 +9,16 @@ function IcoIn() { return (<svg width="16" height="16" viewBox="0 0 24 24" fill=
 
 export function SocialRow({ settings, inverse }: { settings: SiteSettingsData; inverse?: boolean }) {
   const items = [
-    { icon: <IcoIG />, label: settings.instagram || '@createwithmaitrik', name: 'Instagram' },
-    { icon: <IcoYT />, label: settings.youtube || '@maitrikpatel', name: 'YouTube' },
-    { icon: <IcoTT />, label: settings.tiktok || '@maitrikpatel', name: 'TikTok' },
-    { icon: <IcoX />,  label: settings.x || '@maitrikpatel', name: 'X' },
-    { icon: <IcoIn />, label: settings.linkedin || 'in/maitrikpatel', name: 'LinkedIn' },
+    { icon: <IcoIG />, handle: settings.instagram || 'createwithmaitrik', platform: 'instagram', name: 'Instagram' },
+    { icon: <IcoYT />, handle: settings.youtube || '@maitrikpatel', platform: 'youtube', name: 'YouTube' },
+    { icon: <IcoTT />, handle: settings.tiktok || '@maitrikpatel', platform: 'tiktok', name: 'TikTok' },
+    { icon: <IcoX />,  handle: settings.x || '@maitrikpatel', platform: 'x', name: 'X' },
+    { icon: <IcoIn />, handle: settings.linkedin || 'in/maitrikpatel2025', platform: 'linkedin', name: 'LinkedIn' },
   ]
   return (
     <div className="cwm-social-row" style={inverse ? { '--border-1': '#3A3A3C' } as React.CSSProperties : undefined}>
       {items.map((it) => (
-        <a key={it.name} href="#" aria-label={it.name}
+        <a key={it.name} href={socialUrl(it.platform, it.handle)} target="_blank" rel="noopener noreferrer" aria-label={it.name}
           style={inverse ? { background: '#2C2C2E', borderColor: '#3A3A3C', color: '#fff' } : undefined}>
           {it.icon}
         </a>

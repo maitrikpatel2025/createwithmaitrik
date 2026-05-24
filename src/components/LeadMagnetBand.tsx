@@ -1,10 +1,11 @@
 import { Slash, Eyebrow, CheckCircle } from './ui/Button'
 import { EmailCapture } from './EmailCapture'
+import { Reveal } from './AnimateIn'
 import type { LeadMagnetData } from '@/lib/payload'
 
 function PdfCover({ title }: { title: string }) {
   return (
-    <div className="cwm-pdf">
+    <div className="cwm-pdf anim-float">
       <div className="cwm-pdf__shadow" />
       <div className="cwm-pdf__page">
         <span className="cwm-pdf__eyebrow">PLAYBOOK · v1.0</span>
@@ -30,29 +31,31 @@ export function LeadMagnetBand({ lm }: { lm: LeadMagnetData }) {
   return (
     <section className="cwm-lead" id="lead-magnet">
       <div className="cwm-container">
-        <div className="cwm-lead__card">
-          <div className="cwm-lead__art">
-            <PdfCover title={title} />
+        <Reveal animation="fade-up">
+          <div className="cwm-lead__card">
+            <div className="cwm-lead__art">
+              <PdfCover title={title} />
+            </div>
+            <div className="cwm-lead__body">
+              <Eyebrow>Free · Lead magnet</Eyebrow>
+              <h2 className="cwm-lead__title">
+                {title}<span className="accent">.</span>
+              </h2>
+              <p className="cwm-lead__desc">{blurb}</p>
+              <ul className="cwm-lead__list">
+                {bullets.map((b) => (
+                  <li key={b}>
+                    <CheckCircle size={18} /> {b}
+                  </li>
+                ))}
+              </ul>
+              <EmailCapture label="Send it to me" tag="lead-magnet" />
+              <p className="cwm-lead__caption" style={{ marginTop: 12 }}>
+                FREE · NO SPAM · UNSUBSCRIBE ANYTIME
+              </p>
+            </div>
           </div>
-          <div className="cwm-lead__body">
-            <Eyebrow>Free · Lead magnet</Eyebrow>
-            <h2 className="cwm-lead__title">
-              {title}<span className="accent">.</span>
-            </h2>
-            <p className="cwm-lead__desc">{blurb}</p>
-            <ul className="cwm-lead__list">
-              {bullets.map((b) => (
-                <li key={b}>
-                  <CheckCircle size={18} /> {b}
-                </li>
-              ))}
-            </ul>
-            <EmailCapture label="Send it to me" tag="lead-magnet" />
-            <p className="cwm-lead__caption" style={{ marginTop: 12 }}>
-              BE ONE OF THE FIRST · NO SPAM · UNSUBSCRIBE ANYTIME
-            </p>
-          </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

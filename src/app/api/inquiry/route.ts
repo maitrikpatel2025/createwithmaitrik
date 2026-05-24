@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getPayloadClient } from '@/lib/payload'
+import { notifyInquiry } from '@/lib/email'
+import { upsertContact } from '@/lib/contacts'
 
 export async function POST(req: NextRequest) {
   try {
@@ -16,11 +18,32 @@ export async function POST(req: NextRequest) {
       data: {
         name: String(name).slice(0, 200),
         email: String(email).slice(0, 200),
-        serviceType: String(serviceType || ''),
-        budget: String(budget || ''),
+        ...(serviceType ? { serviceType: String(serviceType) } : {}),
+        ...(budget ? { budget: String(budget) } : {}),
         message: String(message).slice(0, 5000),
       },
     })
+
+    // Send notification (non-blocking)
+    notifyInquiry({
+      name: String(name),
+      email: String(email),
+      serviceType: String(serviceType || ''),
+      budget: String(budget || ''),
+      message: String(message),
+    }).catch((err) => console.error('[inquiry:notify]', err))
+
+    // Log to CRM (non-blocking)
+    upsertContact({
+      email: String(email).toLowerCase(),
+      name: String(name),
+      source: 'inquiry',
+      action: 'inquiry-submitted',
+      detail: `${serviceType || 'General'} · ${budget || 'No budget'}`,
+      tags: ['Hot Lead'],
+      serviceInterest: serviceType ? [String(serviceType)] : [],
+      budget: String(budget || ''),
+    }).catch((err) => console.error('[inquiry:crm]', err))
 
     return NextResponse.json({ ok: true })
   } catch (err) {
